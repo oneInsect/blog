@@ -191,7 +191,7 @@ body{
 }
 
 .publish-btn .icn{
-    background: url("/static/imgs/icon.png") no-repeat 0 -184px;
+    background: url("../imgs/icon.png") no-repeat 0 -184px;
 }
 .publish-btn .n2{
     font-weight: 400;

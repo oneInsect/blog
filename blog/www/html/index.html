@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>简码</title>
-    <link type="image/x-icon" href="/imgs/import.ico" rel="icon">
+    <title>Simple Code</title>
+    <link type="image/x-icon" href="../imgs/favicon.ico" rel="icon">
     <meta name="进一步有进一步的欢喜">
-
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/index.js"></script>
 </head>
 
 <body>
@@ -17,47 +19,49 @@
         </div>
 
         <div class="action-menu">
-            <a href="#" class="tb active" >全部</a>
-            <a href="#" class="tb" >文章</a>
-            <a href="#" class="tb" >图片</a>
+            <a href="#" class="tb active">全部</a>
+            <a href="#" class="tb">文章</a>
+            <a href="#" class="tb">图片</a>
         </div>
-            <div class="user-serch">
-            {% if request.session.is_login %}
-                <div id="action_nav" is-login="true" class="action-nav" style="float: left">
-                    <a href="/show/flow/1" style="float:left;position:relative;" id="btnDtaiShw">动态
-                        <b class="notice-num-title" id="Dtai-num-title" style="right: 3px; display: none;">
-                            <em id="Dtai-em"></em>
-                        </b>
-                    </a>
-                    <a href="javascript:;" id="btnNotShw" class="notice-box">通知
-                        <b class="notice-num-title" id="notice-num-title" style="display: none;">
-                            <em id="notice-em"></em>
-                            <i>+</i>
-                        </b>
-                    </a>
-                    <a href="/user/link/saved/1" id="loginUserNc" class="userPro-Box">
-                        <img src="" id="userProImg">
-                        <span class="u-nick" id="userProNick">{{ request.session.user_info.username}}</span>
-                        <em id="userProArr"></em>
-                    </a>
-                </div>
-                <div class="user-opr-box hide" id="userOprBox">
-                    <a href="/user/link/saved/1" style="border-top:0;">我的新热榜</a>
-                    <a href="/profile">设置</a>
-                    <a class="logout" href="javascript:;">退出</a>
-                    <a href="http://www.chouti.com/cdu_45792645155" target="_blank" class="ie6-a">我的收藏</a>
-                </div>
-            {% else %}
-                <div class="sign">
-                    <a class="login" type="text" onclick="login()">登陆</a>
-                    <a class="register" type="text" onclick="login()">注册</a>
-                </div>
-            {% endif %}
+        <div class="user-serch">
+            <div id="action_nav" is-login="true" class="action-nav"
+                 style="float: left">
+                <a href="/show/flow/1" style="float:left;position:relative;"
+                   id="btnDtaiShw">动态
+                    <b class="notice-num-title" id="Dtai-num-title"
+                       style="right: 3px; display: none;">
+                        <em id="Dtai-em"></em>
+                    </b>
+                </a>
+                <a href="javascript:;" id="btnNotShw" class="notice-box">通知
+                    <b class="notice-num-title" id="notice-num-title"
+                       style="display: none;">
+                        <em id="notice-em"></em>
+                        <i>+</i>
+                    </b>
+                </a>
+                <a href="/user/link/saved/1" id="loginUserNc"
+                   class="userPro-Box">
+                    <img src="" id="userProImg">
+                    <span class="u-nick" id="userProNick"> </span>
+                    <em id="userProArr"></em>
+                </a>
+            </div>
+            <div class="user-opr-box hide" id="userOprBox">
+                <a href="/profile">设置</a>
+                <a class="logout" href="javascript:">退出</a>
+
+            </div>
+            <div class="sign">
+                <a class="login" type="text" onclick="login()">登陆</a>
+                <a class="register" type="text" onclick="login()">注册</a>
+            </div>
 
 
             <div class="key-serach" style="float: right">
                 <form action="index.html" method="post">
-                    <input class="search" type="text" name="words" autocomplete="on">
+                    <input class="search" type="text" name="words"
+                           autocomplete="on">
                     <a href="#" class="i">
                         <span class="icon"></span>
                     </a>
@@ -90,33 +94,34 @@
 
             <div class="content-list">
                 <div class="item">
-                <div class="part1">
-                    <a href="javascript:void (0);" class="show-content">2018年1月1日零时起，武汉“九桥一隧一路”ETC收费取消</a>
-                    <span class="source">-mp.weixin.qq.com</span>
-                    <a href="javascript:void (0);" class="content-kind"><span>42区</span></a>
-                    <span class="source-dic">来自
+                    <div class="part1">
+                        <a href="javascript:void (0);" class="show-content">2018年1月1日零时起，武汉“九桥一隧一路”ETC收费取消</a>
+                        <span class="source">-mp.weixin.qq.com</span>
+                        <a href="javascript:void (0);"
+                           class="content-kind"><span>42区</span></a>
+                        <span class="source-dic">来自
                         <a href="javascript:void (0);">iPhone</a>
                     </span>
-                </div>
-                <div class="part2">
-                    <a class="digg-a" href="javascript:void (0);">
-                        <span class="hand-icon icon-digg"></span>
-                        <b>6</b>
-                    </a>
-                    <a href="javascript:void (0);">
-                        <span class="hand-icon icon-discus"></span>
-                        <b>4</b>
-                    </a>
-                    <a href="javascript:void (0);">
-                        <span class="hand-icon icon-collect"></span>
-                        <b>私藏</b>
-                    </a>
-                    <a href="javascript:void (0);" class="user-a">
-                        <b>叮当猫</b>
-                    </a>
-                    <span class="share-site-to"></span>
-                    <span></span>
-                </div>
+                    </div>
+                    <div class="part2">
+                        <a class="digg-a" href="javascript:void (0);">
+                            <span class="hand-icon icon-digg"></span>
+                            <b>6</b>
+                        </a>
+                        <a href="javascript:void (0);">
+                            <span class="hand-icon icon-discus"></span>
+                            <b>4</b>
+                        </a>
+                        <a href="javascript:void (0);">
+                            <span class="hand-icon icon-collect"></span>
+                            <b>私藏</b>
+                        </a>
+                        <a href="javascript:void (0);" class="user-a">
+                            <b>叮当猫</b>
+                        </a>
+                        <span class="share-site-to"></span>
+                        <span></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,33 +142,32 @@
                 <span>|</span>
                 <a href="javascript:void (0);" target="_blank">隐私政策</a>
                 <span>|</span>
-                <a href="javascript:void (0);" target="_blank">抽屉新热榜工具</a>
-                <span>|</span>
-                <!--<a href="http://img.chouti.com/toolsffcj.html" target="_blank">浏览器插件</a>
-                <span>|</span>-->
-                <a href="javascript:void (0);" target="_blank">下载客户端</a>
-                <span>|</span>
                 <a href="javascript:void (0);" target="_blank">意见与反馈</a>
                 <span>|</span>
                 <a href="javascript:void (0);" target="_blank">友情链接</a>
                 <span>|</span>
-                <a href="http://www.shouye.com/Index.do?method=show&pageId=44251&jid=xinrebang@gozap.com" target="_blank">公告</a>
-                <!--<span>|</span><a href="/points/gifts" target="_blank">积分商城</a>-->
-                <a href="http://dig.chouti.com/feed.xml" target="_blank" style="margin-left:0;vertical-align:-2px;" title="Rss订阅，Feed地址：http://dig.chouti.com/feed.xml">
+                <a href="http://www.shouye.com/Index.do?method=show&pageId=44251&jid=xinrebang@gozap.com"
+                   target="_blank">公告</a>
+                <a href="http://dig.chouti.com/feed.xml" target="_blank"
+                   style="margin-left:0;vertical-align:-2px;"
+                   title="Rss订阅，Feed地址：http://dig.chouti.com/feed.xml">
                     <img src="#" width="36" height="14">
                 </a>
             </div>
             <div class="foot-nav2">
-                <a target="_blank" href="http://www.gozap.com/"><img class="foot_e" src="#"></a>
+                <a target="_blank" href="http://www.gozap.com/"><img
+                        class="foot_e" src="#"></a>
                 <span class="foot_d">旗下站点</span>
-                <span class="foot_a">&copy;2017chouti.com</span>
-                <a target="_blank" href="http://www.miibeian.gov.cn/" class="foot_b">京ICP备09053974号-3 京公网安备 110102004562</a>
+                <a target="_blank" href="http://www.simple-code.cn"
+                   class="foot_b">AutoML</a>
+
                 <div style="margin-top:6px;">
-                    <span class="foot_d">违法和不良信息举报：</span>
-                    <span class="foot_a">电话：010-58302039  </span>
-                    <span class="foot_a" style="margin-left: 15px;">邮箱：<a style="color: #369;margin-right: 10px;" href="mailto:jubao@chouti.com">jubao@chouti.com</a> </span>
+                    <span class="foot_a" style="margin-left: 15px;">邮箱：<a
+                            style="color: #369;margin-right: 10px;"
+                            href="mailto:jubao@chouti.com">xfeng_insect@foxmail.com</a> </span>
+                    <a target="_blank" href="http://www.beian.miit.gov.cn"
+                       class="foot_b">粤ICP备19050377号</a>
                 </div>
-                <div style="margin-top:6px;">版权所有：北京格致璞科技有限公司</div>
             </div>
         </div>
 
@@ -173,91 +177,118 @@
 
 <div class="grey hide" id="go_grey">
     <div class="login-window hide" id="login_window">
-                <div class="login-box">
-                    <div class="login-box-head">
-                        <span style="padding-left: 5px">登陆</span>
-                    </div>
-                    <div class="login-box-body">
-                        <div class="box-tab">
-                            <span>邮箱登陆</span> | <span>用户名登陆</span>
+        <div class="login-box">
+            <div class="login-box-head">
+                <span style="padding-left: 5px">登陆</span>
+            </div>
+            <div class="login-box-body">
+                <div class="box-tab">
+                    <span>邮箱登陆</span> | <span>用户名登陆</span>
+                </div>
+                <div class="box-login-moblie">
+                    <form id="login_all_data">
+                        <div style="display: block">
+                            {#
+                            <div class="err-msg user-err">用户名</div>
+                            #}
+                            <input type="text" name="user" id="mobile"
+                                   placeholder="用户名或邮箱" class="mobile"
+                                   tabindex="1">
                         </div>
-                        <div class="box-login-moblie">
-                                <form id="login_all_data">
-                                    <div style="display: block">
-{#                                        <div class="err-msg user-err">用户名</div>#}
-                                        <input type="text" name="user" id="mobile" placeholder="用户名或邮箱" class="mobile" tabindex="1">
-                                    </div>
-                                    <div style="display: block">
-{#                                        <div class="err-msg">密码</div>#}
-                                        <input type="password" name="pwd" id="mbpwd" placeholder="密码" class="mbpwd" tabindex="2">
-                                    </div>
-                                    <div style="display: block;margin-bottom: 0px;">
-{#                                        <div class="err-msg">验证码</div>#}
-                                        <input name="code" type="text" placeholder="验证码" style="width:66px;margin-right:6px;top: -12px;" class="rgmobile" />
-                                        <div class="btn btn-getcode" style="display: inline-block;">
-                                            <img class="check-img" src="/check_code/" alt="验证码" onclick="ChangeCode(this);">
-                                        </div>
-                                    </div>
-
-                                </form>
+                        <div style="display: block">
+                            {#
+                            <div class="err-msg">密码</div>
+                            #}
+                            <input type="password" name="pwd" id="mbpwd"
+                                   placeholder="密码" class="mbpwd" tabindex="2">
                         </div>
-                        <div class="box-login-btn">
-                            <div class="btn btn-login pub-icons pub-btn pub-btn-valid" onclick="SubmitLogin()" style="height: 25px;line-height: 25px;width: 70px;background: #369;border-radius: 5px 5px 5px 5px">
-                                <span style="color: white">登录</span>
-                                <span style="display:none;"><img src="#" >正在登录</span>
-                                <span class="fgtpwd"><a href="javascript: void (0)" style="color: #369;">忘记密码?</a></span>
+                        <div style="display: block;margin-bottom: 0px;">
+                            {#
+                            <div class="err-msg">验证码</div>
+                            #}
+                            <input name="code" type="text" placeholder="验证码"
+                                   style="width:66px;margin-right:6px;top: -12px;"
+                                   class="rgmobile"/>
+                            <div class="btn btn-getcode"
+                                 style="display: inline-block;">
+                                <img class="check-img" src="/check_code/"
+                                     alt="验证码" onclick="ChangeCode(this);">
                             </div>
                         </div>
+
+                    </form>
+                </div>
+                <div class="box-login-btn">
+                    <div class="btn btn-login pub-icons pub-btn pub-btn-valid"
+                         onclick="SubmitLogin()"
+                         style="height: 25px;line-height: 25px;width: 70px;background: #369;border-radius: 5px 5px 5px 5px">
+                        <span style="color: white">登录</span>
+                        <span style="display:none;"><img src="#">正在登录</span>
+                        <span class="fgtpwd"><a href="javascript: void (0)"
+                                                style="color: #369;">忘记密码?</a></span>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="register-box">
-                    <div class="register-box-head">
-                        <span style="padding-left: 5px">注册</span>
-                        <span style="float: right;cursor: pointer;margin-right: 10px;" onclick="close_login();">×</span>
-                    </div>
-                    <div class="register-box-body">
-                        <div class="box-tab">
-                            <span>1 填写手机号</span> > <span>2 填写基本资料</span>
+        <div class="register-box">
+            <div class="register-box-head">
+                <span style="padding-left: 5px">注册</span>
+                <span style="float: right;cursor: pointer;margin-right: 10px;"
+                      onclick="close_login();">×</span>
+            </div>
+            <div class="register-box-body">
+                <div class="box-tab">
+                    <span>1 填写手机号</span> > <span>2 填写基本资料</span>
+                </div>
+                <div class="box-register-mobile">
+                    <form id="all_data">
+                        <div class="err-msg username"></div>
+                        <div>
+                            <input name="username" type="text" placeholder="用户名"
+                                   class="rgmobile"/>
                         </div>
-                        <div class="box-register-mobile">
-                            <form id="all_data">
-                            <div class="err-msg username"></div>
+                        <div class="pr">
+                            <div class="err-msg email"></div>
+                            <div class="pr">
+                                <input name="email" type="text" placeholder="邮箱"
+                                       class="rgcode" id="email"/>
+                            </div>
+                        </div>
+                        <div class="pr">
+                            <div class="err-msg email_code"></div>
+                            <input name="email_code" type="text"
+                                   placeholder="验证码"
+                                   style="width:100px;margin-right:6px;"
+                                   class="rgmobile"/>
+                            <div class="err-sum" style="right: 0"></div>
+                            <div class="btn btn-getcode"
+                                 onclick="BandGetCode(this);"
+                                 style="margin-bottom: 15px;">发送验证码
+                            </div>
                             <div>
-                                <input name="username" type="text" placeholder="用户名" class="rgmobile"/>
-                            </div>
-                            <div class="pr">
-                                <div class="err-msg email"></div>
-                                <div class="pr">
-                                    <input name="email"type="text" placeholder="邮箱" class="rgcode" id="email"/>
-                                </div>
-                            </div>
-                            <div class="pr">
-                                <div class="err-msg email_code"></div>
-                                <input name="email_code" type="text" placeholder="验证码" style="width:100px;margin-right:6px;" class="rgmobile" />
-                                <div class="err-sum" style="right: 0"></div>
-                                <div class="btn btn-getcode" onclick="BandGetCode(this);" style="margin-bottom: 15px;">发送验证码</div>
-                                <div>
                                 <div class="err-msg password"></div>
-                                <input name="password" type="password" placeholder="密码" class="rgpwd" />
-                                </div>
+                                <input name="password" type="password"
+                                       placeholder="密码" class="rgpwd"/>
                             </div>
-                            <div>
-                                <div class="btn btn-register pub-icons pub-btn pub-btn-valid" onclick="BandRegister()" style="height: 25px;line-height: 25px;width: 70px;background: #369;border-radius: 5px 5px 5px 5px">
-                                    <span style="color: white">下一步</span>
-                                    <span style="display:none;"><img src="#" >正在注册</span>
-                                </div>
-                            </div>
-                            </form>
                         </div>
-                    </div>
+                        <div>
+                            <div class="btn btn-register pub-icons pub-btn pub-btn-valid"
+                                 onclick="BandRegister()"
+                                 style="height: 25px;line-height: 25px;width: 70px;background: #369;border-radius: 5px 5px 5px 5px">
+                                <span style="color: white">下一步</span>
+                                <span style="display:none;"><img
+                                        src="#">正在注册</span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+            </div>
+        </div>
     </div>
 </div>
 
 </body>
-<script src="/static/jquery-2.1.4.min.js"></script>
-
 
 
 </html>
