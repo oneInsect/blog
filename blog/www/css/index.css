@@ -29,21 +29,21 @@ body{
     line-height: 44px;
 }
 
-.logo{
-    background: url("../imgs/chatlist.png") no-repeat 0 0;
-    height: 13px;
-    width: 138px;
-    float: left;
-    margin-top: 15px;
-}
+/*.logo{*/
+    /*background: url("../imgs/favicon.ico") no-repeat 0 0;*/
+    /*height: 13px;*/
+    /*width: 138px;*/
+    /*float: left;*/
+    /*margin-top: 15px;*/
+/*}*/
 
 .action-menu{
     float: left;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
 }
 .action-menu a.tb{
     color: #c0cddf;
-    margin-left: -8px;
+    /*margin-left: -8px;*/
     padding: 0 15px 0 15px;
     display: inline-block;
 
