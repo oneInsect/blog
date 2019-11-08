@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+<div class="outer">
 <div class="head-box">
     <div class="head-content">
 
@@ -21,34 +21,26 @@
             <a href="#" class="tb">Article</a>
             <a href="#" class="tb">Picture</a>
         </div>
-        <div class="user-serch">
-            <div id="action_nav" class="action-nav"
-                 style="float: left">
-                <a href="/show/flow/1" style="float:left;position:relative;"
-                   id="btnDtaiShw">Notifications
+        <div class="user-search">
+            <div id="action_nav" class="action-nav hide" style="float: left">
+                <a href="/show/flow/1" style="float:left;position:relative;" id="btnDtaiShw">Notifications
                     <b class="notice-num-title" id="Dtai-num-title" style="right: 3px; display: none;">
                         <em id="Dtai-em"></em>
                     </b>
                 </a>
-
-                <a href="/user/link/saved/1" id="loginUserNc" class="userPro-Box">
-                    <img src="" id="userProImg">
-                    <span class="u-nick" id="userProNick"> </span>
-                    <em id="userProArr"></em>
-                </a>
             </div>
-            <div class="user-opr-box" id="userOprBox">
+            <div class="user-opr-box hide" id="userOprBox">
                 <a href="/profile">Setting</a>
                 <a class="logout" href="javascript:">Sign out</a>
-
             </div>
+
             <div class="sign">
                 <a class="login" type="text" onclick="login()">Sign in</a>
                 <a class="register" type="text" onclick="login()">Sign up</a>
             </div>
 
 
-            <div class="key-serach" style="float: right">
+            <div class="key-search" style="float: right">
                 <form action="index.html" method="post">
                     <input class="search" type="text" name="words"
                            autocomplete="on">
@@ -61,7 +53,7 @@
     </div>
 </div>
 
-<div class="body">
+<div class="content-body">
     <div class="content">
         <div class="content-L">
             <div class="art-head">
@@ -124,7 +116,7 @@
             <div class="foot-nav2">
                 <a target="_blank" href="http://www.gozap.com/"><img
                         class="foot_e" src="#"></a>
-                <span class="foot_d">Site</span>
+                <span class="foot_d">Links</span>
                 <a target="_blank" href="http://www.simple-code.cn" class="foot_b">AutoML</a>
                 <div style="margin-top:6px;">
                     <span class="foot_a" style="margin-left: 15px;">Email：xfeng_insect@foxmail.com</span>
@@ -247,7 +239,7 @@
         </div>
     </div>
 </div>
-
+</div>
 </body>
 
 
