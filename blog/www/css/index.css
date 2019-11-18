@@ -70,7 +70,7 @@ body{
     color: #c0cddf;
     height: 44px;
     padding: 0 20px;
-    display: inline-block;
+    float: right;
     cursor: pointer;
 
 }
@@ -109,17 +109,18 @@ body{
 
 
 .content-body{
-    padding-top: 44px;
     background-color: #ededed;
     width: 100%;
-    height: 100%;
+    height: 95.3%;
+    padding-top: 44px;
+    overflow: hidden;
 }
+
 .content{
     background-color: white;
     width: 1016px;
     height: 100%;
     margin: 0 auto;
-    overflow: hidden;
 }
 
 .content-L{
@@ -132,7 +133,7 @@ body{
 .content-R{
     background-color: white;
     width: 25%;
-    padding: 15px 0 0 0px;
+    padding: 15px 0 0 0;
     float: right;
     height: 90%;
 }
