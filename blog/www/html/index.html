@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Code</title>
+    <link type="image/x-icon" href="../imgs/favicon.ico" rel="icon">
+    <meta name="进一步有进一步的欢喜">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/index.js"></script>
+</head>
+
+<body>
+<div class="outer">
+    <div class="head-box">
+        <div class="head-content">
+
+
+            <div class="action-menu">
+                <a href="#" class="tb active">All</a>
+                <a href="#" class="tb">Article</a>
+                <a href="#" class="tb">Picture</a>
+            </div>
+            <div class="user-search">
+                <div id="action_nav" class="action-nav hide" style="float: left">
+                    <a href="/show/flow/1" style="float:left;position:relative;" id="btnDtaiShw">Notifications
+                        <b class="notice-num-title" id="Dtai-num-title" style="right: 3px; display: none;">
+                            <em id="Dtai-em"></em>
+                        </b>
+                    </a>
+                </div>
+                <div class="user-opr-box hide" id="userOprBox">
+                    <a href="/profile">Setting</a>
+                    <a class="logout" href="javascript:">Sign out</a>
+                </div>
+
+                <div class="sign">
+                    <a class="login" type="text" onclick="login()">Sign in</a>
+                    <a class="register" type="text" onclick="login()">Sign up</a>
+                </div>
+
+
+                <div class="key-search" style="float: right">
+                    <form action="index.html" method="post">
+                        <input class="search" type="text" name="words"
+                               autocomplete="on">
+                        <a href="#" class="i">
+                            <span class="icon"></span>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-body">
+        <div class="content">
+            <div class="content-L">
+                <div class="art-head">
+                    <div class="art-head-l">
+                        <a class="hotbtn active icons" href="#">Hot</a>
+                        <a class="newbtn" href="#">New</a>
+                    </div>
+
+
+                    <a href="#" class="publish-btn">
+                        <span class="icn n1"></span>
+                        <span class="n2">Publish</span>
+                    </a>
+                </div>
+
+                <div class="content-list">
+                    <div class="item">
+                        <div class="part1">
+                            <a href="javascript:void (0);" class="show-content">Data type of Redis</a>
+                            <span class="source">-mp.weixin.qq.com</span>
+
+                            <span class="source-dic">From
+                        <a href="javascript:void (0);">iPhone</a>
+                    </span>
+                        </div>
+                        <div class="part2">
+                            <a class="digg-a" href="javascript:void (0);">
+                                <span class="hand-icon icon-digg"></span>
+                                <b>6</b>
+                            </a>
+                            <a href="javascript:void (0);">
+                                <span class="hand-icon icon-discus"></span>
+                                <b>4</b>
+                            </a>
+                            <a href="javascript:void (0);">
+                                <span class="hand-icon icon-collect"></span>
+                                <b>Star</b>
+                            </a>
+                            <span class="share-site-to"></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-R">
+
+            </div>
+
+            <div class="content-B">
+                <div class="foot-nav">
+                    <div style="display:none" id="y-destjid"></div>
+                    <div style="display:none" id="y-destnick"></div>
+                    <a href="javascript:void (0);" target="_blank">About</a>
+                    <span>|</span>
+                    <a href="javascript:void (0);" target="_blank">Contact</a>
+                    <span>|</span>
+                    <a href="javascript:void (0);" target="_blank">Feedback</a>
+                </div>
+                <div class="foot-nav2">
+                    <a target="_blank" href="javascript:void (0);"><img class="foot_e" src="#"></a>
+                    <span class="foot_d">Links</span>
+                    <a target="_blank" href="http://www.simple-code.cn" class="foot_b">AutoML</a>
+                    <div style="margin-top:6px;">
+                        <span class="foot_a" style="margin-left: 15px;">Email：xfeng_insect@foxmail.com</span>
+                        <a target="_blank" href="http://www.beian.miit.gov.cn" class="foot_b">粤ICP备19050377号</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grey hide" id="go_grey">
+        <div class="login-window hide" id="login_window">
+            <div class="login-box">
+                <div class="login-box-head">
+                    <span style="padding-left: 5px">登陆</span>
+                </div>
+                <div class="login-box-body">
+                    <div class="box-tab">
+                        <span>邮箱登陆</span> | <span>用户名登陆</span>
+                    </div>
+                    <div class="box-login-moblie">
+                        <form id="login_all_data">
+                            <div style="display: block">
+                                <div class="err-msg user-err">用户名</div>
+
+                                <input type="text" name="user" id="mobile" placeholder="用户名或邮箱" class="mobile" tabindex="1">
+                            </div>
+                            <div style="display: block">
+                                <div class="err-msg">密码</div>
+                                <input type="password" name="pwd" id="mbpwd" placeholder="密码" class="mbpwd" tabindex="2">
+                            </div>
+                            <div style="display: block;margin-bottom: 0px;">
+                                <div class="err-msg">验证码</div>
+                                <input name="code" type="text" placeholder="验证码" style="width:66px;margin-right:6px;top: -12px;" class="rgmobile"/>
+                                <div class="btn btn-getcode" style="display: inline-block;">
+                                    <img class="check-img" src="/check_code/" alt="验证码" onclick="ChangeCode(this);">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="box-login-btn">
+                        <div class="btn btn-login pub-icons pub-btn pub-btn-valid" onclick="SubmitLogin()" style="height: 25px;line-height: 25px;width: 70px;background: #369;border-radius: 5px 5px 5px 5px">
+                            <span style="color: white">登录</span>
+                            <span style="display:none;"><img src="#">正在登录</span>
+                            <span class="fgtpwd"><a href="javascript: void (0)" style="color: #369;">忘记密码?</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="register-box">
+                <div class="register-box-head">
+                    <span style="padding-left: 5px">注册</span>
+                    <span style="float: right;cursor: pointer;margin-right: 10px;"
+                          onclick="close_login();">×</span>
+                </div>
+                <div class="register-box-body">
+                    <div class="box-tab">
+                        <span>1 填写手机号</span> > <span>2 填写基本资料</span>
+                    </div>
+                    <div class="box-register-mobile">
+                        <form id="all_data">
+                            <div class="err-msg username"></div>
+                            <div>
+                                <input name="username" type="text" placeholder="用户名" class="rgmobile"/>
+                            </div>
+                            <div class="pr">
+                                <div class="err-msg email"></div>
+                                <div class="pr">
+                                    <input name="email" type="text" placeholder="邮箱" class="rgcode" id="email"/>
+                                </div>
+                            </div>
+                            <div class="pr">
+                                <div class="err-msg email_code"></div>
+                                <input name="email_code" type="text" placeholder="验证码" style="width:100px;margin-right:6px;" class="rgmobile"/>
+                                <div class="err-sum" style="right: 0"></div>
+                                <div class="btn btn-getcode" onclick="BandGetCode(this);" style="margin-bottom: 15px;">发送验证码
+                                </div>
+                                <div>
+                                    <div class="err-msg password"></div>
+                                    <input name="password" type="password" placeholder="密码" class="rgpwd"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="btn btn-register pub-icons pub-btn pub-btn-valid" onclick="BandRegister()" style="height: 25px;line-height: 25px;width: 70px;background: #369;border-radius: 5px 5px 5px 5px">
+                                    <span style="color: white">下一步</span>
+                                    <span style="display:none;"><img src="#">正在注册</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>
