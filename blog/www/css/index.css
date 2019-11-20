@@ -251,11 +251,11 @@ body{
 .login-window{
     position: fixed;
     z-index: 10;
-    width: 700px;
+    width: 350px;
     height: 375px;
     background-color: #84a42b;
     top:20%;
-    right: 27%;
+    right: 40%;
 }
 
 .grey{
@@ -274,7 +274,7 @@ body{
     background-color: white;
     width: 350px;
     height: 375px;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px 5px 5px 5px;
 }
 .login-box-head,.register-box-head{
     position: relative;
@@ -283,7 +283,7 @@ body{
     line-height: 30px;
     color: #abb6d2;
     font-weight: bold;
-    border-radius: 5px 0 0 0;
+    border-radius: 5px 5px 0 0;
     background: #e7ecf2;
     width: 350px;
 }
@@ -295,6 +295,7 @@ body{
     background: white;
     height: 345px;
     width: 350px;
+    border-radius: 0 0 5px 5px;
 }
 .box-tab{
     padding: 20px 0;
