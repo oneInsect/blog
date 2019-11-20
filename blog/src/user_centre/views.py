@@ -7,7 +7,10 @@ from user_centre import models
 import random
 import smtplib
 from email.mime.text import MIMEText
-from utils import check_code as CheckCode
+from utils import create_validate_code, get_logger, get_hash_code
+
+
+LOG = get_logger("user_centre")
 
 
 class SendMsgForm(forms.Form):
@@ -67,10 +70,9 @@ def send_code(code):
     _user = "739056672@qq.com"
     _pwd = "cdupknupzggibbge"
     _to = "739056672@qq.com"
-    print('code', code)
     msg = MIMEText(code)
-    msg["Subject"] = "注册验证码"
-    msg["From"] = 'chouti@live.com'
+    msg["Subject"] = "Verification code"
+    msg["From"] = 'blog@live.com'
     msg["To"] = _to
 
     try:
@@ -78,9 +80,9 @@ def send_code(code):
         s.login(_user, _pwd)
         s.sendmail(_user, _to, msg.as_string())
         s.quit()
-        print("Success!")
+        LOG.info("Success!")
     except smtplib.SMTPException:
-        print("Error: 无法发送邮件")
+        LOG.info("Error: 无法发送邮件")
 
 
 def check_code(request):
@@ -92,7 +94,7 @@ def check_code(request):
     stream = io.BytesIO()
     # 创建随机字符 code
     # 创建一张图片格式的字符串，将随机字符串写到图片上
-    img, code = CheckCode.create_validate_code()
+    img, code = create_validate_code()
     img.save(stream, "PNG")
     # 将字符串形式的验证码放在Session中
     request.session["CheckCode"] = code
@@ -191,19 +193,20 @@ def register(request):
     else:
         err_msg = form.errors.as_json()
         rep.message = json.loads(err_msg)
-    print('返回前端： ', rep.message)
+    LOG.info('返回前端： ', rep.message)
     return HttpResponse(json.dumps(rep.__dict__))
 
 
 def login(request):
     rep = BaseResponse()
-    print(request.POST)
+    LOG.info(request.POST)
     form = LoginFrom(request.POST)
     if form.is_valid():
         value_dict = form.clean()
         # 验证码
-        print('生产的验证码', request.session["CheckCode"].lower())
-        print('生产的验证码', value_dict['code'].lower())
+        value_dict['pwd'] = get_hash_code(value_dict['pwd'])
+        LOG.info('生产的验证码', request.session["CheckCode"].lower())
+        LOG.info('生产的验证码', value_dict['code'].lower())
         if value_dict['code'].lower() != request.session["CheckCode"].lower():
             rep.message = {'code': [{'message': '验证码错误'}]}
             return HttpResponse(json.dumps(rep.__dict__))
@@ -224,10 +227,10 @@ def login(request):
     else:
         err_msg = form.errors.as_json()
         rep.message = json.loads(err_msg)
-    print('返回前端： ', rep.message)
+    LOG.info('返回前端： ', rep.message)
     return HttpResponse(json.dumps(rep.__dict__))
 
 
 def login_out(request):
     request.session.clear()
-    return redirect('/index.html/')
+    return redirect('/')

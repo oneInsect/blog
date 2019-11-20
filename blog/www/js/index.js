@@ -9,15 +9,15 @@ $(function () {
         $("#userOprBox").addClass('hide')
     })
     $('.logout').click(function () {
-        $(this).attr("href", "/login_out/")
+        $(this).attr("href", "/api/v1/user-centre/login_out/")
     })
 });
 
-function login() {
-    $("#go_grey, #login_window").removeClass('hide');
+function sign_in() {
+    $("#sign_in, #login_window").removeClass('hide');
 };
 function close_login() {
-    $("#go_grey, #login_window").addClass('hide');
+    $("#sign_in, #login_window").addClass('hide');
 };
 function BandGetCode(ths) {
     $('.err-msg,.err-sum').empty();
@@ -33,14 +33,14 @@ function BandGetCode(ths) {
     }
     var time = 60;
     $.ajax({
-        url: "/send_msg/",
+        url: "/api/v1/user-centre/send_msg/",
         type: "POST",
         data: {email: email},
         dataType: "json",
         success: function (arg) {
             if (!arg.status) {
 
-                console.log(arg.summary)
+                console.log(arg.summary);
                 $('.err-sum').text(arg.summary);
             } else {
                 $(ths).addClass('sending');
@@ -62,7 +62,7 @@ function BandRegister() {
     $('.err-msg,.err-sum').empty();
     var all_data = $('#all_data').serialize();
     $.ajax({
-        url: "/register/",
+        url: "/api/v1/user-centre/register/",
         type: "POST",
         data: all_data,
         dataType: "json",
@@ -83,7 +83,7 @@ function SubmitLogin() {
     $('.err-msg').empty();
     var all_data = $('#login_all_data').serialize();
     $.ajax({
-        url: "/login/",
+        url: "/api/v1/user-centre/login/",
         type: "POST",
         data: all_data,
         dataType: "json",

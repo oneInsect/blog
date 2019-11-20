@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Simple Code</title>
-    <link type="image/x-icon" href="../imgs/favicon.ico" rel="icon">
+    <link type="image/x-icon" href="imgs/favicon.ico" rel="icon">
     <meta name="进一步有进一步的欢喜">
-    <link href="../css/index.css" rel="stylesheet">
-    <script src="../js/jquery-2.1.4.min.js"></script>
-    <script src="../js/index.js"></script>
+    <link href="css/index.css" rel="stylesheet">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/index.js"></script>
 </head>
 
 <body>
 <div class="outer">
     <div class="head-box">
         <div class="head-content">
-
 
             <div class="action-menu">
                 <a href="#" class="tb active">All</a>
@@ -35,15 +34,14 @@
                 </div>
 
                 <div class="sign">
-                    <a class="login" type="text" onclick="login()">Sign in</a>
-                    <a class="register" type="text" onclick="login()">Sign up</a>
+                    <a class="register" type="text" onclick="sign_up()">Sign up</a>
+                    <a class="login" type="text" onclick="sign_in()">Sign in</a>
                 </div>
 
 
                 <div class="key-search" style="float: right">
                     <form action="index.html" method="post">
-                        <input class="search" type="text" name="words"
-                               autocomplete="on">
+                        <input class="search" type="text" name="words" autocomplete="on">
                         <a href="#" class="i">
                             <span class="icon"></span>
                         </a>
@@ -126,7 +124,7 @@
         </div>
     </div>
 
-    <div class="grey hide" id="go_grey">
+    <div class="grey hide" id="sign_in">
         <div class="login-window hide" id="login_window">
             <div class="login-box">
                 <div class="login-box-head">
@@ -147,11 +145,11 @@
                                 <div class="err-msg">密码</div>
                                 <input type="password" name="pwd" id="mbpwd" placeholder="密码" class="mbpwd" tabindex="2">
                             </div>
-                            <div style="display: block;margin-bottom: 0px;">
+                            <div style="display: block;margin-bottom: 0;">
                                 <div class="err-msg">验证码</div>
                                 <input name="code" type="text" placeholder="验证码" style="width:66px;margin-right:6px;top: -12px;" class="rgmobile"/>
                                 <div class="btn btn-getcode" style="display: inline-block;">
-                                    <img class="check-img" src="/check_code/" alt="验证码" onclick="ChangeCode(this);">
+                                    <img class="check-img" src="/api/v1/user-centre/login_code" alt="验证码" onclick="ChangeCode(this);">
                                 </div>
                             </div>
 
@@ -167,7 +165,11 @@
                 </div>
             </div>
 
-            <div class="register-box">
+
+        </div>
+    </div>
+    <div class="grey hide" id="sign_up">
+             <div class="register-box">
                 <div class="register-box-head">
                     <span style="padding-left: 5px">注册</span>
                     <span style="float: right;cursor: pointer;margin-right: 10px;"
@@ -210,7 +212,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 </body>
