@@ -21,14 +21,7 @@
                 <a href="#" class="tb">Picture</a>
             </div>
             <div class="user-search">
-                <div id="action_nav" class="action-nav hide" style="float: left">
-                    <a href="/show/flow/1" style="float:left;position:relative;" id="btnDtaiShw">Notifications
-                        <b class="notice-num-title" id="Dtai-num-title" style="right: 3px; display: none;">
-                            <em id="Dtai-em"></em>
-                        </b>
-                    </a>
-                </div>
-                <div class="user-opr-box hide" id="userOprBox">
+                 <div class="user-opr-box hide" id="userOprBox">
                     <a href="/profile">Setting</a>
                     <a class="logout" href="javascript:">Sign out</a>
                 </div>
@@ -36,6 +29,11 @@
                 <div class="sign">
                     <a class="register" type="text" onclick="sign_up()">Sign up</a>
                     <a class="login" type="text" onclick="sign_in()">Sign in</a>
+                </div>
+
+                <div class="logged hide">
+                    <a class='notice' href="#" style="float:left;position:relative;">Notifications</a>
+                    <a class='user-info' href="#" style="float:left;position:relative;">x</a>
                 </div>
 
 
@@ -128,28 +126,29 @@
         <div class="login-window hide" id="login_window">
             <div class="login-box">
                 <div class="login-box-head">
-                    <span style="padding-left: 5px">登陆</span>
+                    <span style="padding-left: 5px">Sign in</span>
+                    <span style="float: right;cursor: pointer;padding: 0 10px" onclick="close_login();">×</span>
                 </div>
                 <div class="login-box-body">
                     <div class="box-tab">
-                        <span>邮箱登陆</span> | <span>用户名登陆</span>
+                        <span>username</span>&emsp; | &emsp;<span>email&emsp;&emsp;</span>
                     </div>
                     <div class="box-login-moblie">
                         <form id="login_all_data">
                             <div style="display: block">
-                                <div class="err-msg user-err">用户名</div>
+                                <div class="err-msg user-err">username</div>
 
-                                <input type="text" name="user" id="mobile" placeholder="用户名或邮箱" class="mobile" tabindex="1">
+                                <input type="text" name="username" id="mobile" placeholder="username or email" class="mobile" tabindex="1">
                             </div>
                             <div style="display: block">
-                                <div class="err-msg">密码</div>
-                                <input type="password" name="pwd" id="mbpwd" placeholder="密码" class="mbpwd" tabindex="2">
+                                <div class="err-msg">password</div>
+                                <input type="password" name="pwd" id="mbpwd" placeholder="password" class="mbpwd" tabindex="2">
                             </div>
                             <div style="display: block;margin-bottom: 0;">
-                                <div class="err-msg">验证码</div>
-                                <input name="code" type="text" placeholder="验证码" style="width:66px;margin-right:6px;top: -12px;" class="rgmobile"/>
+                                <div class="err-msg">verify code</div>
+                                <input name="code" type="text" style="width:60px;margin-right:6px;top: -12px;" class="rgmobile"/>
                                 <div class="btn btn-getcode" style="display: inline-block;">
-                                    <img class="check-img" src="/api/v1/user-centre/login_code" alt="验证码" onclick="ChangeCode(this);">
+                                    <img class="check-img" src="" alt="verify code" onclick="ChangeCode(this);">
                                 </div>
                             </div>
 
@@ -157,9 +156,13 @@
                     </div>
                     <div class="box-login-btn">
                         <div class="btn btn-login pub-icons pub-btn pub-btn-valid" onclick="SubmitLogin()" style="height: 25px;line-height: 25px;width: 70px;background: #369;border-radius: 5px 5px 5px 5px">
-                            <span style="color: white">登录</span>
-                            <span style="display:none;"><img src="#">正在登录</span>
-                            <span class="fgtpwd"><a href="javascript: void (0)" style="color: #369;">忘记密码?</a></span>
+                            <span style="color: white">sign in</span>
+                            <span style="display:none;"><img src="#">signing</span>
+                            <span class="fgtpwd">
+                                <a href="javascript: void (0)" style="color: #369;">
+                                    <U>forgotten password?</U>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -169,48 +172,50 @@
         </div>
     </div>
     <div class="grey hide" id="sign_up">
-             <div class="register-box">
-                <div class="register-box-head">
-                    <span style="padding-left: 5px">注册</span>
-                    <span style="float: right;cursor: pointer;margin-right: 10px;"
-                          onclick="close_login();">×</span>
+        <div class="login-window hide" id="register_window">
+        <div class="register-box">
+            <div class="register-box-head">
+                <span style="padding-left: 5px">Sign up</span>
+                <span style="float: right;cursor: pointer;padding: 0 10px" onclick="close_register();">×</span>
+            </div>
+            <div class="register-box-body">
+                <div class="box-tab">
+                    <span>Complete your information</span>
                 </div>
-                <div class="register-box-body">
-                    <div class="box-tab">
-                        <span>1 填写手机号</span> > <span>2 填写基本资料</span>
-                    </div>
-                    <div class="box-register-mobile">
-                        <form id="all_data">
-                            <div class="err-msg username"></div>
-                            <div>
-                                <input name="username" type="text" placeholder="用户名" class="rgmobile"/>
-                            </div>
+                <div class="box-register-mobile">
+                    <form id="all_data">
+                        <div class="err-msg username"></div>
+                        <div>
+                            <input name="username" type="text" placeholder="username" class="rgmobile"/>
+                        </div>
+                        <div class="pr">
+                            <div class="err-msg email"></div>
                             <div class="pr">
-                                <div class="err-msg email"></div>
-                                <div class="pr">
-                                    <input name="email" type="text" placeholder="邮箱" class="rgcode" id="email"/>
-                                </div>
+                                <input name="email" type="text" placeholder="email" class="rgcode" id="email"/>
                             </div>
-                            <div class="pr">
-                                <div class="err-msg email_code"></div>
-                                <input name="email_code" type="text" placeholder="验证码" style="width:100px;margin-right:6px;" class="rgmobile"/>
-                                <div class="err-sum" style="right: 0"></div>
-                                <div class="btn btn-getcode" onclick="BandGetCode(this);" style="margin-bottom: 15px;">发送验证码
-                                </div>
-                                <div>
-                                    <div class="err-msg password"></div>
-                                    <input name="password" type="password" placeholder="密码" class="rgpwd"/>
-                                </div>
+                        </div>
+                        <div class="pr">
+                            <div class="err-msg email_code"></div>
+                            <input name="email_code" type="text" style="width:60px;margin-right:6px;" class="rgmobile"/>
+                            <div class="err-sum" style="right: 0"></div>
+                            <div class="btn btn-getcode" onclick="BandGetCode(this);" style="margin-bottom: 15px;">send verify code
                             </div>
                             <div>
-                                <div class="btn btn-register pub-icons pub-btn pub-btn-valid" onclick="BandRegister()" style="height: 25px;line-height: 25px;width: 70px;background: #369;border-radius: 5px 5px 5px 5px">
-                                    <span style="color: white">下一步</span>
-                                    <span style="display:none;"><img src="#">正在注册</span>
-                                </div>
+                                <div class="err-msg password"></div>
+                                <input name="password" type="password" placeholder="password" class="rgpwd"/>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div>
+                            <div class="btn btn-register pub-icons pub-btn pub-btn-valid" onclick="BandRegister()"
+                                 style="height: 25px;line-height: 25px;width: 70px;background: #369;border-radius: 5px 5px 5px 5px">
+                                <span style="color: white">Sign up</span>
+                                <span style="display:none;"><img src="#">Registering</span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+            </div>
+            </div>
             </div>
     </div>
 </div>
