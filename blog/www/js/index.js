@@ -1,55 +1,98 @@
 /**
  * Created by Administrator on 11/3/2019.
  */
+
+$(document).ready(
+    function ready_page(){
+		$.ajax({
+			url: "/api/v1/user-centre/user-info",
+            type: "get",
+			success: function (rep) {
+				logged(rep);
+			},
+			error: function () {
+                login_required()
+            }
+		});
+		function logged(rep) {
+		    var message = rep["message"];
+		    if (!message){
+		        login_required();
+                return
+            }
+		    if (message["username"]){
+                $(".sign").addClass("hide");
+                $(".logged").removeClass("hide");
+                $(".user-info").text(message["username"]);
+            }else{
+		        login_required();
+            }
+        }
+        function login_required() {
+            $(".sign").removeClass("hide");
+		    $(".logged").addClass("hide");
+        }
+
+	});
 $(function () {
-    $("#loginUserNc,#userOprBox").mouseover(function () {
+    $(".user-info").mouseover(function () {
         $("#userOprBox").removeClass('hide')
-    })
-    $("#loginUserNc,#userOprBox").mouseout(function () {
+    });
+    $("#userOprBox").mouseleave(function () {
         $("#userOprBox").addClass('hide')
-    })
+    });
     $('.logout').click(function () {
-        $(this).attr("href", "/api/v1/user-centre/login_out/")
+        $(this).attr("href", "/api/v1/user-centre/session/")
     })
 });
 
 function sign_in() {
     $("#sign_in, #login_window").removeClass('hide');
-};
+    $('.err-msg').empty();
+    $('.check-img').attr("src", "/api/v1/user-centre/login_code");
+}
+
+function sign_up() {
+    $("#sign_up, #register_window").removeClass('hide');
+    $('.err-msg').empty();
+}
+
 function close_login() {
     $("#sign_in, #login_window").addClass('hide');
-};
+}
+
+function close_register() {
+    $("#sign_up, #register_window").addClass('hide');
+}
 function BandGetCode(ths) {
     $('.err-msg,.err-sum').empty();
     var email = $('#email').val();
     if (email.trim().length == 0) {
-        $('.err-sum').text('请输入邮箱');
+        $('.err-sum').text('please input your email address');
         return;
     }
-    ;
+
     if ($(this).hasClass('sending')) {
         // 遇到return下面不再继续执行
         return;
     }
     var time = 60;
     $.ajax({
-        url: "/api/v1/user-centre/send_msg/",
-        type: "POST",
+        url: "/api/v1/user-centre/email/",
+        type: "GET",
         data: {email: email},
         dataType: "json",
         success: function (arg) {
-            if (!arg.status) {
-
-                console.log(arg.summary);
-                $('.err-sum').text(arg.summary);
+            if (arg.code !== 200) {
+                $('.err-sum').text(arg.error);
             } else {
                 $(ths).addClass('sending');
                 var interval = setInterval(function () {
                     time -= 1;
-                    $(ths).text('已发送(' + time + ')');
+                    $(ths).text('sent(' + time + ')');
                     if (time <= 0) {
                         $(ths).removeClass('sending');
-                        $(ths).text('获取验证码');
+                        $(ths).text('Get verify code');
                         clearInterval(interval);
                     }
                 }, 1000)
@@ -83,7 +126,7 @@ function SubmitLogin() {
     $('.err-msg').empty();
     var all_data = $('#login_all_data').serialize();
     $.ajax({
-        url: "/api/v1/user-centre/login/",
+        url: "/api/v1/user-centre/session/",
         type: "POST",
         data: all_data,
         dataType: "json",

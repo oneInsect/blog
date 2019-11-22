@@ -6,6 +6,8 @@ Filename      : tools.py
 import os
 import json
 from hashlib import md5
+from django.http import HttpResponse
+
 from settings import BASE_DIR
 
 
@@ -24,3 +26,19 @@ def get_hash_code(name):
     """get hash code by string"""
     hasher = md5(name.encode('utf-8'))
     return hasher.hexdigest()
+
+
+class BaseResponse:
+    def __init__(self):
+        self.message = {}
+        self.error = ""
+        self.code = 200
+
+
+def login_required(func):
+    def wrapper(request, *args, **kwargs):
+        if request.session.get("is_login"):
+            return func(request, *args, *kwargs)
+        else:
+            return HttpResponse()
+    return wrapper

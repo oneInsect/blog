@@ -1,7 +1,7 @@
 
 *{
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 a{
     text-decoration: none;
@@ -24,8 +24,8 @@ body{
     height: 44px;
     width: 100%;
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     display: block;
     z-index: 11;
 }
@@ -57,16 +57,16 @@ body{
 
 }
 
-.action-menu a.active,.action-menu a.tb:hover,.sign a:hover,div#action_nav a:hover{
+.action-menu a.active,.action-menu a.tb:hover,.sign a:hover,.logged a:hover{
     color: #fff;
     background-color: #204982;
 }
 
-.sign{
+.sign, .logged{
     position: absolute;
     right: 40%;
 }
-.sign a, div#action_nav a{
+.sign a, .logged a{
     color: #c0cddf;
     height: 44px;
     padding: 0 20px;
@@ -267,7 +267,7 @@ body{
     width: 100%;
     height: 100%;
 }
-.login-box{
+.login-box, .register-box{
     position: absolute;
     top: 0;
     left: 0;
@@ -287,10 +287,7 @@ body{
     background: #e7ecf2;
     width: 350px;
 }
-.register-box-body{
-    border-left: 1px dotted #808080;
-    margin-left: -1px;
-}
+
 .register-box-body, .login-box-body {
     background: white;
     height: 345px;
@@ -298,7 +295,7 @@ body{
     border-radius: 0 0 5px 5px;
 }
 .box-tab{
-    padding: 20px 0;
+    padding: 35px 0 25px 0;
     text-align: center;
     font-size: 14px;
     color: #abb6d2;
@@ -307,7 +304,7 @@ body{
 
 .box-login-moblie,.box-register-mobile{
     position: relative;
-    padding: 0 70px;
+    padding: 15px 70px;
 }
 .box-login-moblie div,.box-register-mobile div{
     position: relative;
@@ -338,27 +335,19 @@ body{
 .box-login-btn .fgtpwd {
     position: absolute;
     right: 70px;
-    top: 0px;
+    top: 0;
 }
 .box-login-btn .btn ,.box-register-mobile .btn{
     text-align: center;
     cursor: pointer;
 }
-.register-box{
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: white;
-    width: 350px;
-    height: 375px;
-    border-radius: 0 5px 5px 0;
-}
+
 .box-register-mobile .btn-getcode {
-    width: 75px;
+    width: 110px;
     display: inline-block;
     padding: 6px 5px;
     font-size: 12px;
-    margin: 0px;
+    margin: 0;
     background: #015e98;
     color: white;
     border-radius: 5px;
@@ -398,7 +387,7 @@ div.err-msg ,div.err-sum,span.err-msg{
     width: 400px;
 }
 #userOprBox{
-    left: 130px;
+    left: 155px;
     position: absolute;
     top: 44px;
     padding-left: 3px;
@@ -446,7 +435,7 @@ div.err-msg ,div.err-sum,span.err-msg{
     margin-left: 30px;
 }
 .digg-a{
-    margin-left: 0px!important;
+    margin-left: 0!important;
 }
 
 .part2 a b{

@@ -15,5 +15,6 @@ def parse_ini(conf_name, section=None, option=None):
     :param option: option of config, str
     """
     conf_path = os.path.join(BASE_DIR, "etc", conf_name)
-    parse = ConfigParser().read(conf_path)
+    parse = ConfigParser()
+    parse.read(conf_path)
     return parse.get(section, option)
