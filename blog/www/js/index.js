@@ -72,10 +72,13 @@ function BandGetCode(ths) {
         return;
     }
 
-    if ($(this).hasClass('sending')) {
+    if ($(ths).hasClass('sending')) {
         // 遇到return下面不再继续执行
         return;
     }
+    $(ths).addClass('sending');
+    $(ths).addClass('disable');
+    $(ths).text('sent');
     var time = 60;
     $.ajax({
         url: "/api/v1/user-centre/email/",
@@ -86,12 +89,12 @@ function BandGetCode(ths) {
             if (arg.code !== 200) {
                 $('.err-sum').text(arg.error);
             } else {
-                $(ths).addClass('sending');
                 var interval = setInterval(function () {
                     time -= 1;
                     $(ths).text('sent(' + time + ')');
                     if (time <= 0) {
                         $(ths).removeClass('sending');
+                        $(ths).removeClass('disable');
                         $(ths).text('Get verify code');
                         clearInterval(interval);
                     }
@@ -105,12 +108,12 @@ function BandRegister() {
     $('.err-msg,.err-sum').empty();
     var all_data = $('#all_data').serialize();
     $.ajax({
-        url: "/api/v1/user-centre/register/",
+        url: "/api/v1/user-centre/user/",
         type: "POST",
         data: all_data,
         dataType: "json",
         success: function (arg) {
-            if (arg.status) {
+            if (arg.code === 201) {
                 window.location.reload();
             } else {
                 var i = 0;
@@ -131,8 +134,7 @@ function SubmitLogin() {
         data: all_data,
         dataType: "json",
         success: function (arg) {
-            console.log(arg.message);
-            if (arg.status) {
+            if (arg.code === 200) {
                 window.location.reload();
             } else {
                 $.each(arg.message, function (key, val) {

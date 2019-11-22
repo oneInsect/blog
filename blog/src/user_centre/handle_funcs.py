@@ -2,6 +2,7 @@
 
 import json
 import random
+import datetime
 import smtplib
 from email.mime.text import MIMEText
 from django.shortcuts import redirect
@@ -38,7 +39,6 @@ def login(request):
             LOG.info("%s attempt login, result=fail, reason=%s".format(
                 value_dict['username'], fail_reason))
             return JsonResponse(rep.__dict__)
-        rep.status = True
         request.session['is_login'] = True
         request.session.update({'nid': obj.nid, 'email': obj.email,
                                 'username': obj.username})
@@ -110,19 +110,112 @@ def random_code():
 def send_code(code, receiver):
     _user = parse_ini("blog.ini", "email", "username")
     _pwd = parse_ini("blog.ini", "email", "password")
-    _to = receiver
-    msg = MIMEText(code)
+    _email_host = parse_ini("blog.ini", "email", "host")
+    _email_port = int(parse_ini("blog.ini", "email", "port"))
+    text = "<h1>Register Verification Code</h1><p>" \
+           "Your verification code is %s, " \
+           "please enter this code to your blog register page, " \
+           "this code will expire after 60 seconds</p>" % code
+    msg = MIMEText(text, 'html')
     msg["Subject"] = "Verification code"
-    msg["From"] = 'lance@blog.com'
-    msg["To"] = _to
+    msg["From"] = _user
+    msg["To"] = receiver
+    try:
+        server = smtplib.SMTP_SSL(host=_email_host, port=_email_port)
+        server.login(user=_user, password=_pwd)
+        server.sendmail(from_addr=_user, to_addrs=receiver,
+                        msg=msg.as_string())
+        server.quit()
+        LOG.info("Send email to %s success!" % receiver)
+    except smtplib.SMTPException as email_error:
+        LOG.error("Send email to %s error!, reason=%s" % (receiver, email_error))
 
-    # try:
-    s = smtplib.SMTP_SSL("smtp.qq.com", 465)
-    print(_user, _pwd)
-    s.login(_user, _pwd)
-    s.sendmail(_user, _to, msg.as_string())
-    s.quit()
-    LOG.info("Success!")
-    # except smtplib.SMTPException as email_error:
-    #     LOG.info("Error: %s" % email_error)
 
+def send_email_verify_code(request):
+    rep = BaseResponse()
+    form = SendMsgForm(request.GET)
+    if form.is_valid():
+        value_dict = form.clean()
+        email = value_dict['email']
+        has_email_exist = models.UserInfo.objects.filter(email=email).count()
+        if has_email_exist:
+            rep.error = 'This email address has already registered'
+            return JsonResponse(rep.__dict__)
+        current_date = datetime.datetime.now()
+        code = random_code()
+        count = models.SendMsg.objects.filter(email=email).count()
+        if not count:
+            models.SendMsg.objects.create(email=email, email_code=code,
+                                          ctime=current_date)
+        else:
+            limit_time = current_date - datetime.timedelta(hours=1)
+            times = models.SendMsg.objects.filter(email=email,
+                                                  ctime__gt=limit_time,
+                                                  times__gt=9).count()
+            if times:
+                rep.error = 'please try again after one hour!'
+            else:
+                unfreeze = models.SendMsg.objects.filter(email=email,
+                                                         ctime__lt=limit_time).count()
+                if unfreeze:
+                    models.SendMsg.objects.filter(email=email).update(times=0)
+                from django.db.models import F
+                models.SendMsg.objects.filter(email=email).update(
+                    email_code=code, ctime=current_date, times=F("times") + 1)
+                rep.status = True
+        send_code(code, email)
+    else:
+        rep.error = form.errors['email'][0]
+    return JsonResponse(rep.__dict__)
+
+
+def register_backend(request):
+    rep = BaseResponse()
+    form = RegisterForm(request.POST)
+    if form.is_valid():
+        value_dict = form.clean()
+        current_time = datetime.datetime.now()
+        limit_time = current_time - datetime.timedelta(minutes=1)
+        timeout = models.SendMsg.objects.filter(email=value_dict['email'],
+                                                email_code=value_dict[
+                                                    'email_code'],
+                                                ctime__lt=limit_time).count()
+        if timeout:
+            rep.error = 'verification code error or expired'
+            rep.code = 422
+            LOG.error("%s was register failed, reason=%s" % (value_dict['email'],
+                                                             rep.error))
+            return JsonResponse(rep.__dict__)
+        has_username_exist = models.UserInfo.objects.filter(
+            username=value_dict['username']).count()
+        if has_username_exist:
+            rep.code = 422
+            rep.message['username'] = 'username has already exist'
+            LOG.error("%s was register failed, reason=%s" % (value_dict['email'],
+                                                             rep.error))
+            return JsonResponse(rep.__dict__)
+        has_email_exist = models.UserInfo.objects.filter(
+            email=value_dict['email']).count()
+        if has_email_exist:
+            rep.code = 422
+            rep.message['email'] = 'email has already exist'
+            LOG.error("%s was register failed, reason=%s" % (value_dict['email'],
+                                                             rep.error))
+            return JsonResponse(rep.__dict__)
+        value_dict.pop('email_code')
+        value_dict['ctime'] = current_time
+        value_dict["password"] = get_hash_code(value_dict["password"])
+        obj = models.UserInfo.objects.create(**value_dict)
+        models.SendMsg.objects.filter(email=value_dict['email']).delete()
+        rep.code = 201
+        request.session['is_login'] = True
+        request.session.update({'nid': obj.nid, 'email': obj.email,
+                                'username': obj.username})
+        LOG.info("%s was register success" % obj.email)
+    else:
+        err_msg = form.errors.as_json()
+        rep.error = json.loads(err_msg)
+        rep.status = 500
+        LOG.error("%s was register failed, reason=%s" % (request.POST.get('email'),
+                                                         rep.error))
+    return JsonResponse(rep.__dict__)

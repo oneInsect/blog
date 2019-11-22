@@ -377,7 +377,7 @@ div.err-msg ,div.err-sum,span.err-msg{
     color: #F60;
     top: -16px;
 }
-.sending{
+.sending, .sending:hover{
     background: grey!important;
     color: #2459a2!important;
 }
